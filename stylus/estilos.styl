@@ -1,0 +1,240 @@
+@import "nib"
+@import "normalize.styl"
+@import "fonts.styl"
+
+// animacion(parametro)
+// 	-webkit-animation parametro
+// 	-moz-animation parametro
+// 	-o-animation parametro
+// 	-ms-animation parametro
+// 	animation parametro
+
+gris_oscuro = #333333
+gris_claro = #818181
+rojo = #B40431
+
+.blanco
+	color white
+
+body
+
+	font-family 'Varela Round', sans-serif
+	padding-top 90px !important
+	
+.user 
+	right 2px
+	text-align right
+	color rojo
+	
+figure
+	margin 0
+	
+.nav
+	li 
+		margin-left 1em
+	a
+		&:hover
+			background-color transparent !important
+		
+.imgUser
+	border-radius: 800px;
+	overflow: hidden;
+	
+.song
+	margin 0px
+	text-align left
+	p
+		margin 0.5em 0 
+		
+.search
+	padding-top 10px
+	padding-left 20px
+	float left
+	
+.input
+	border 1px solid gris_claro
+	height 2em
+	border-radius 5px
+	padding 0 1em 0 2em
+	
+.search-icon
+	position absolute
+	left .5em
+	top .5em
+	color rojo
+.close-icon
+	position absolute
+	top .11em
+	color rojo
+	right .5em
+	font-size 1.2em
+	
+.menuItem
+	float left !important
+	list-style-type none !important
+	cursor pointer !important
+	border-top 5px solid white !important
+
+	&:hover
+		border-top 5px solid rojo !important
+		
+
+
+.playing
+	color gris_oscuro
+	
+.button-menu
+	color rojo
+	
+.center-block
+	margin 0 auto !important
+	
+.center-text
+	text-align center
+	
+.actions
+	position absolute
+	bottom 0
+	left 0
+	right 0
+	background rgba(black,.3)
+
+.action
+	color rojo
+	margin-right .5em
+	&:last-child
+		margin-right 0
+		
+a:hover 
+	text-decoration none
+		
+
+.progress
+	padding-top 10px
+	margin 1em 0
+	position relative
+	background white
+	.min
+	.max
+		padding-top 10px
+		font-size .8em
+		position absolute
+		top -5px
+	.min
+		padding-top 10px
+		left 0
+	.max
+		right 0
+	.total
+		background gris_claro
+		border-radius 5px
+		height 5px
+		margin-top 10px
+		margin 0 auto
+		width 75%
+	.state
+		animation 10s state infinite linear
+		background rojo
+		border-radius 5px
+		height 5px
+		position relative
+		width 30%
+		animation 10s state infinite linear
+		
+
+	.circle
+		background gris_oscuro
+		border-radius 50%
+		height 10px
+		position absolute
+		right 0
+		top -2px
+		width 10px
+		animation 1s circle infinite
+		
+@keyframes state
+	0%
+		width 0%
+	100%
+		width 100%
+		
+@keyframes circle
+	0%
+		transform scale(1)
+	100%
+		transform scale(1.2)
+		opacity 0
+	
+.padding
+	padding 1em
+.padding-tb
+	padding 1em 0
+	
+.right-text
+	text-align right
+
+.relative
+	position relative
+	
+.border-bottom
+	border-bottom 1px solid gris_claro
+	
+.playlist
+	margin-left 1em
+	width 400px
+	text-align left !important
+	border-left 2px solid gris_claro
+
+	p
+		margin-left 2.8em !important
+	ul
+		margin-bottom -0.5em
+		li
+			width 100%
+			list-style-type none
+	.item 
+		padding 1em 0
+		border-bottom 2px solid gris_claro
+	.action 
+		font-size 14px !important
+
+.right
+	float right
+	
+
+	
+@media screen and (min-width:800px)
+	button-menu
+		display none
+	.user 
+		position absolute
+
+		
+@media screen and (max-width:500px)
+	.buttonSearch
+		width 100%
+	.nav
+		li
+			width 100%
+
+@media screen and (max-width:1000px)
+	.playlist
+		width 100%
+		margin-bottom 20px !important
+		border-left none !important
+		margin-left 0px !important
+		p 
+			margin-left 0em !important
+			padding-left 0px !important
+		ul 
+			margin-left 0em !important
+			padding-left 0px !important
+		.name
+			display none !important
+		.author
+			display none !important
+	.music
+		.name
+			display block !important
+		.author
+			display block !important
