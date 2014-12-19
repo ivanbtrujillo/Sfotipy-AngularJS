@@ -1,4 +1,4 @@
 Sfotipy-frontend
 ================
 
-Maqueta frontend Resposnive de aplicación de música.
+Maqueta frontend Responsive de aplicación de música.
