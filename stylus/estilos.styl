@@ -15,6 +15,13 @@ rojo = #B40431
 
 .blanco
 	color white
+	
+.hidde
+	display none !important
+.show
+	display inline !important
+	
+
 
 body
 
@@ -45,6 +52,9 @@ figure
 	text-align left
 	p
 		margin 0.5em 0 
+				
+.description
+	margin-bottom 0.5em
 		
 .search
 	padding-top 10px
@@ -78,8 +88,6 @@ figure
 	&:hover
 		border-top 5px solid rojo !important
 		
-
-
 .playing
 	color gris_oscuro
 	
@@ -97,13 +105,14 @@ figure
 	bottom 0
 	left 0
 	right 0
-	background rgba(black,.3)
+	background rgba(black,.7)
 
 .action
 	color rojo
 	margin-right .5em
 	&:last-child
 		margin-right 0
+	font-size 18px
 		
 a:hover 
 	text-decoration none
@@ -181,9 +190,8 @@ a:hover
 	
 .playlist
 	margin-left 1em
-	width 400px
+	width 500px
 	text-align left !important
-	border-left 2px solid gris_claro
 
 	p
 		margin-left 2.8em !important
@@ -197,9 +205,10 @@ a:hover
 		border-bottom 2px solid gris_claro
 	.action 
 		font-size 14px !important
-
-.right
-	float right
+	&-actions
+		float right
+	max-height 300px
+	overflow-y auto
 	
 
 	
@@ -208,6 +217,8 @@ a:hover
 		display none
 	.user 
 		position absolute
+	.albumsContainer
+		margin-top 1em
 
 		
 @media screen and (max-width:500px)
@@ -216,6 +227,14 @@ a:hover
 	.nav
 		li
 			width 100%
+	.playlist
+		&-actions
+			width 100%
+			
+		&-name
+			width 100%
+		.item
+			padding-bottom 2em
 
 @media screen and (max-width:1000px)
 	.playlist
@@ -233,8 +252,10 @@ a:hover
 			display none !important
 		.author
 			display none !important
+		
 	.music
 		.name
 			display block !important
 		.author
 			display block !important
+

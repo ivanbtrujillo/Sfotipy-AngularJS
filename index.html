@@ -2,7 +2,7 @@
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" ng-app="Sfotipy"> <!--<![endif]-->
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -13,12 +13,13 @@
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
 		<!-- Optional theme -->
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
 
 		<link rel="stylesheet" href="css/estilos.css">
         <link href='http://fonts.googleapis.com/css?family=Varela+Round' rel='stylesheet' type='text/css'>
 
     </head>
-    <body>
+    <body ng-controller="AppController">
         <header>
             <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
               <div class="container-fluid">
@@ -70,9 +71,11 @@
         </header>
         <section class="container" >
             <article class=" col-xs-12 col-sm-12 col-md-12 col-lg-12 center-block center-text playing" >
+
+                <!-- Player View -->
                 <div class="music" style="float:left">
                     <figure class="image relative">
-                        <img src="img/albums/pharrellwilliams/girl.jpg" width="100%" alt="Come Get It Bae Pharrell Williams" >
+                        <img src="{{currentAlbum.cover}}" width="320px" alt="{{currentAlbum.name}}" >
                         <div class="actions padding right-text">
                             <a href="" class="action icon-add"></a>
                             <a href="" class="action icon-love"></a>
@@ -94,74 +97,42 @@
                     </div>
                     <div class="description border-bottom center-text music">
                         <p class="name">
-                            Come Get It Bae
+                            {{currentSong.name}}
                         </p>
                         <p class="author">
-                            Pharrell Williams
+                            {{currentAlbum.author}}
                         </p>
                     </div>
-                    <div class="play padding-tb center-text">
-                        <a href="" class="action icon-prev"></a>
-                        <a href="" class="action icon-play"></a>
-                        <a href="" class="action icon-next"></a>
-                        <a href="" class="action icon-random"></a>
-                        <a href="" class="action icon-vol"></a>
+
+                    <audio id="player">
+                        <source src="{{currentSong.file}}"></source>
+                    </audio>
+
+                    <div class="play padding-tb center-text" ng-class="playerButtons">
+                        <a href="" class="action fa fa-backward"></a>
+                        <a href="" ng-click='reproducir()'  ng-class="playButton" class="action fa fa-play"></a>
+                        <a href="" ng-click='reproducir()'  ng-class="pauseButton" class="action fa fa-pause"></a>
+                        <a href="" class="action fa fa-forward"></a>
+                        <!--<a href="" class="action icon-stop"></a> -->
+                        <a href="" ng-click='audio.muting = !audio.muting' class="action icon-vol"></a>
                     </div>
                 </div>
+
+                <!--Playlist View-->
                 <div class="playlist" style="float:left" >
-                    <p class="name">
-                        Girl
-                    </p>
-                    <p class="author">
-                        Pharrel Williams
-                    </p>
+                    <h2 class="name">
+                        {{currentAlbum.name}}
+                    </h2>
+                    <h2 class="author">
+                        {{currentAlbum.author}}
+                    </h2>
                     <ul class="list">
-                        <li class="item">
-                            <span>
-                                Marilyn Monroe
+                        <li class="item" ng-repeat="song in currentAlbum.songs">
+                            <span class="playlist-name">
+                                {{song.name}} ({{song.length}})
                             </span>
-                            <span class="right">
-                                <a href="" class="action icon-add gray"></a>
-                                <a href="" class="action icon-love gray"></a>
-                                <a href="" class="action icon-share gray"></a>
-                            </span>
-                        </li>
-                        <li class="item">
-                            <span>
-                                Marilyn Monroe
-                            </span>
-                            <span class="right">
-                                <a href="" class="action icon-add gray"></a>
-                                <a href="" class="action icon-love gray"></a>
-                                <a href="" class="action icon-share gray"></a>
-                            </span>
-                        </li>
-                        <li class="item">
-                            <span>
-                                Marilyn Monroe
-                            </span>
-                            <span class="right">
-                                <a href="" class="action icon-add gray"></a>
-                                <a href="" class="action icon-love gray"></a>
-                                <a href="" class="action icon-share gray"></a>
-                            </span>
-                        </li>
-                        <li class="item">
-                            <span>
-                                Marilyn Monroe
-                            </span>
-                            <span class="right">
-                                <a href="" class="action icon-add gray"></a>
-                                <a href="" class="action icon-love gray"></a>
-                                <a href="" class="action icon-share gray"></a>
-                            </span>
-                        </li>
-                        <li class="item">
-                            <span>
-                                Marilyn Monroe
-                            </span>
-                            <span class="right">
-                                <a href="" class="action icon-add gray"></a>
+                            <span class="right playlist-actions" >
+                                <a href="" ng-click="add(song.name)" class="action icon-add gray"></a>
                                 <a href="" class="action icon-love gray"></a>
                                 <a href="" class="action icon-share gray"></a>
                             </span>
@@ -169,164 +140,22 @@
 
                     </ul>
                 </div>
-                
             </article>
         </section>
-        <section class="container" >
-            <article class="song col-xs-6 col-sm-3 col-md-2 col-lg-2">
+
+        <!-- Albums View -->
+        <section id="albums" class="container albumsContainer"  >
+            <article class="song col-xs-6 col-sm-3 col-md-2 col-lg-2" ng-repeat="album in albums" ng-click="select(album.name)">
                 <figure class="image">
-                    <img src="img/albums/pharrellwilliams/girl.jpg" 
-                    width="100%" height="auto" alt="Girl Pharrell Williams">
+                    <img src="{{album.cover}}"  
+                    width="100%" height="auto" alt="{{album.name}} - {{album.author}}">
                 </figure>
             
                 <p class="name">
-                    Girl 
+                    {{album.name}}
                 </p>
                 <p class="author">
-                    Pharrell Williams
-                </p>
-            </article>
-            <article class="song col-xs-6 col-sm-3 col-md-2 col-lg-2">
-                <figure class="image">
-                    <img src="img/albums/pharrellwilliams/girl.jpg" 
-                    width="100%" height="auto" alt="Girl Pharrell Williams">
-                </figure>
-            
-                <p class="name">
-                    Girl
-                </p>
-                <p class="author">
-                    Pharrell Williams
-                </p>
-            </article>
-            <article class="song col-xs-6 col-sm-3 col-md-2 col-lg-2">
-                <figure class="image">
-                    <img src="img/albums/pharrellwilliams/girl.jpg" 
-                    width="100%" height="auto" alt="Girl Pharrell Williams">
-                </figure>
-            
-                <p class="name">
-                    Girl
-                </p>
-                <p class="author">
-                    Pharrell Williams
-                </p>
-            </article>
-            <article class="song col-xs-6 col-sm-3 col-md-2 col-lg-2">
-                <figure class="image">
-                    <img src="img/albums/pharrellwilliams/girl.jpg" 
-                    width="100%" height="auto" alt="Girl Pharrell Williams">
-                </figure>
-            
-                <p class="name">
-                    Girl
-                </p>
-                <p class="author">
-                    Pharrell Williams
-                </p>
-            </article>
-            <article class="song col-xs-6 col-sm-3 col-md-2 col-lg-2">
-                <figure class="image">
-                    <img src="img/albums/pharrellwilliams/girl.jpg" 
-                    width="100%" height="auto" alt="Girl Pharrell Williams">
-                </figure>
-            
-                <p class="name">
-                    Girl
-                </p>
-                <p class="author">
-                    Pharrell Williams
-                </p>
-            </article>
-            <article class="song col-xs-6 col-sm-3 col-md-2 col-lg-2">
-                <figure class="image">
-                    <img src="img/albums/pharrellwilliams/girl.jpg" 
-                    width="100%" height="auto" alt="Girl Pharrell Williams">
-                </figure>
-            
-                <p class="name">
-                    Girl
-                </p>
-                <p class="author">
-                    Pharrell Williams
-                </p>
-            </article>            
-            <article class="song col-xs-6 col-sm-3 col-md-2 col-lg-2">
-                <figure class="image">
-                    <img src="img/albums/pharrellwilliams/girl.jpg" 
-                    width="100%" height="auto" alt="Girl Pharrell Williams">
-                </figure>
-            
-                <p class="name">
-                    Girl 
-                </p>
-                <p class="author">
-                    Pharrell Williams
-                </p>
-            </article>
-            <article class="song col-xs-6 col-sm-3 col-md-2 col-lg-2">
-                <figure class="image">
-                    <img src="img/albums/pharrellwilliams/girl.jpg" 
-                    width="100%" height="auto" alt="Girl Pharrell Williams">
-                </figure>
-            
-                <p class="name">
-                    Girl
-                </p>
-                <p class="author">
-                    Pharrell Williams
-                </p>
-            </article>
-            <article class="song col-xs-6 col-sm-3 col-md-2 col-lg-2">
-                <figure class="image">
-                    <img src="img/albums/pharrellwilliams/girl.jpg" 
-                    width="100%" height="auto" alt="Girl Pharrell Williams">
-                </figure>
-            
-                <p class="name">
-                    Girl
-                </p>
-                <p class="author">
-                    Pharrell Williams
-                </p>
-            </article>
-            <article class="song col-xs-6 col-sm-3 col-md-2 col-lg-2">
-                <figure class="image">
-                    <img src="img/albums/pharrellwilliams/girl.jpg" 
-                    width="100%" height="auto" alt="Girl Pharrell Williams">
-                </figure>
-            
-                <p class="name">
-                    Girl
-                </p>
-                <p class="author">
-                    Pharrell Williams
-                </p>
-            </article>
-            <article class="song col-xs-6 col-sm-3 col-md-2 col-lg-2">
-                <figure class="image">
-                    <img src="img/albums/pharrellwilliams/girl.jpg" 
-                    width="100%" height="auto" alt="Girl Pharrell Williams">
-                </figure>
-            
-                <p class="name">
-                    Girl
-                </p>
-                <p class="author">
-                    Pharrell Williams
-                </p>
-            </article>
-            <article class="song col-xs-6 col-sm-3 col-md-2 col-lg-2">
-                <figure class="image">
-                    <img src="img/albums/pharrellwilliams/girl.jpg" 
-                    width="100%" height="auto" alt="Girl Pharrell Williams">
-                </figure>
-            
-                <p class="name">
-                    Girl
-                </p>
-                <p class="author">
-                    Pharrell Williams
+                    {{album.author}}
                 </p>
             </article>
         </section>
@@ -334,7 +163,17 @@
 
        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 		<!-- Latest compiled and minified JavaScript -->
-		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+	   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+       <script src="lib/angular/angular.min.js"></script> 
+       <script src="lib/angular-route/angular-route.min.js"></script>
+       <script src="lib/underscore/underscore-min.js"></script>
+       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+       <script src="js/app.js"></script>
+       <script src="js/controllers.js"></script>
+       <script>
+           
+
+       </script>
  
 
 

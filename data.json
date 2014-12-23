@@ -1,0 +1,128 @@
+{
+	"GIRL": {
+		"author": "Pharrel Williams",
+		"cover": "img/albums/pharrellwilliams/girl.jpg",
+		"year": 2014,
+		"songs": [
+			{
+			"name": "Marilyn Monroe",
+			"length": "5:51"
+			},
+			{
+			"name": "Brand New",
+			"length": "4:31"
+			},
+			{
+			"name": "Hunter",
+			"length": "4:00"
+			},
+			{
+			"name": "Gush",
+			"length": "3:54"
+			},
+			{
+			"name": "Happy",
+			"length": "3:53"
+			},
+			{
+			"name": "Come Get it Bae",
+			"length": "3:21"
+			}
+		]
+	},
+    "The King is Back": {
+	    "author": "Juan Magan",
+	    "cover": "img/albums/juanmagan/thekingisback.jpg",
+	    "year": 2014,
+	    "songs": [
+	      {
+	        "name": "Como un niño",
+	        "length": "3:27",
+	        "file": "audio/juanmagan/Kalimba.mp3"
+	      },
+	      {
+	        "name": "Tentándome (feat. Maffio)",
+	        "length": "2:50",
+	        "file": "audio/juanmagan/Maid.mp3"
+	      },
+	      {
+	        "name": "Si no te quisiera (feat. Belinda & L.Consciente)",
+	        "length": "3:05"
+	      },
+	      {
+	        "name": "20años (feat. Aridian)",
+	        "length": "3:15"
+	      },
+	      {
+	        "name": "Falling in Love (feat. Zion & Lennox)",
+	        "length": "2:56"
+	      },
+	      {
+	        "name": "Como el Viento (feat. Farruko)",
+	        "length": "3:21"
+	      }
+	    ]
+    },
+    "En todo estare": {
+	    "author": "Chayanne",
+	    "cover": "img/albums/chayanne/entodoestare.jpg",
+	    "year": 2014,
+	    "songs": [
+	      {
+	        "name": "Madre tierra (Oye)",
+	        "length": "3:27",
+	        "file": "audio/juanmagan/Kalimba.mp3"
+	      },
+	      {
+	        "name": "Humanos a Marte",
+	        "length": "2:50",
+	        "file": "audio/juanmagan/Maid.mp3"
+	      },
+	      {
+	        "name": "Tu respiración",
+	        "length": "3:05"
+	      },
+	      {
+	        "name": "Bailando dos corazones",
+	        "length": "3:15"
+	      },
+	      {
+	        "name": "Mareaito con tu amor",
+	        "length": "2:56"
+	      },
+	      {
+	        "name": "Quiero bailar contigo",
+	        "length": "3:21"
+	      },
+	      {
+	        "name": "Dímelo",
+	        "length": "3:21"
+	      },
+	      {
+	        "name": "De todas",
+	        "length": "3:21"
+	      },
+	      {
+	        "name": "Infinita tú",
+	        "length": "3:21"
+	      },
+	      {
+	        "name": "Tubuduru",
+	        "length": "3:21"
+	      },
+	      {
+	        "name": "Tu respiración (Vers. acústica)",
+	        "length": "3:21"
+	      },
+	      {
+	        "name": "Dímelo (Vers. acústica)",
+	        "length": "3:21"
+	      },
+	      {
+	        "name": "Humanos a Marte (ft. Yandel)",
+	        "length": "3:21"
+	      }
+	    ]
+    }
+
+}
