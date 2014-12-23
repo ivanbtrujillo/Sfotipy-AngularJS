@@ -1,7 +1,7 @@
 Sfotipy AngularJS
 ================
 
-Aplicación web responsive para la reproducción de musica.
+Aplicación web responsive para la reproducción de musica, inicialmente desarrollada en Mejorando.la.
 
 Atencion: Esta aplicación está en desarrollo. Actualmente los controles permiten:
 * Seleccionar un album
