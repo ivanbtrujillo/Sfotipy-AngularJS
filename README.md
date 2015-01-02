@@ -14,8 +14,8 @@ Para clonarlo:
 $ git clone https://github.com/ivanbtrujillo/Sfotipy-AngularJS.git Sfotipy-AngularJS
 ```
 
-### Instalacion
-Para instalarlo debemos tener node.js en nuestro PC.
+### Puesta en marcha
+Para ejecutar la webapp debemos tener node.js en nuestro PC e instalar el modulo http-server, que nos permite ejecutar un servidor simple sobre nodejs.
 Instalaremos http-server de forma global:
 
 ```sh
